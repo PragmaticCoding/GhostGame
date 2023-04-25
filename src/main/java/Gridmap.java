@@ -1,10 +1,10 @@
-package main;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class Gridmap { // txt einlesen und ränder hinzufügen
     private Image gridmap;
@@ -28,35 +28,35 @@ public class Gridmap { // txt einlesen und ränder hinzufügen
     private int spriteBorder;
 
     public Gridmap(int size, Player player) {
-        gridmap = new Image("resources/terrain/floor/GridmapTest52x29.png");
+        gridmap = new Image(Gridmap.class.getResource("/terrain/floor/GridmapTest52x29.png").toString());
         terrainSize = size / 4;
         spriteBorder = terrainSize / 2;
         this.player = player;
-        water = new Image(new File("resources/terrain/floor/Water.png").toString(), terrainSize, terrainSize, false, false);
-        dirt = new Image(new File("resources/terrain/floor/Dirt.png").toString(), terrainSize, terrainSize, false, false);
-        grass = new Image(new File("resources/terrain/floor/Grass.png").toString(), terrainSize, terrainSize, false, false);
+        water = new Image(Gridmap.class.getResource("/terrain/floor/Water.png").toString(), terrainSize, terrainSize, false, false);
+        dirt = new Image(Gridmap.class.getResource("/terrain/floor/Dirt.png").toString(), terrainSize, terrainSize, false, false);
+        grass = new Image(Gridmap.class.getResource("/terrain/floor/Grass.png").toString(), terrainSize, terrainSize, false, false);
         grassToDirt = new Image[4];
-            grassToDirt[0] = new Image(new File("resources/terrain/floor/Grass_Dirt_0.png").toString(), terrainSize, terrainSize, false, false);
-            grassToDirt[1] = new Image(new File("resources/terrain/floor/Grass_Dirt_1.png").toString(), terrainSize, terrainSize, false, false);
-            grassToDirt[2] = new Image(new File("resources/terrain/floor/Grass_Dirt_2.png").toString(), terrainSize, terrainSize, false, false);
-            grassToDirt[3] = new Image(new File("resources/terrain/floor/Grass_Dirt_3.png").toString(), terrainSize, terrainSize, false, false);
+            grassToDirt[0] = new Image(Gridmap.class.getResource("/terrain/floor/Grass_Dirt_0.png").toString(), terrainSize, terrainSize, false, false);
+            grassToDirt[1] = new Image(Gridmap.class.getResource("/terrain/floor/Grass_Dirt_1.png").toString(), terrainSize, terrainSize, false, false);
+            grassToDirt[2] = new Image(Gridmap.class.getResource("/terrain/floor/Grass_Dirt_2.png").toString(), terrainSize, terrainSize, false, false);
+            grassToDirt[3] = new Image(Gridmap.class.getResource("/terrain/floor/Grass_Dirt_3.png").toString(), terrainSize, terrainSize, false, false);
         grassToWater = new Image[4];
-            grassToWater[0] = new Image(new File("resources/terrain/floor/Grass_Water_0.png").toString(), terrainSize, terrainSize, false, false);
-            grassToWater[1] = new Image(new File("resources/terrain/floor/Grass_Water_1.png").toString(), terrainSize, terrainSize, false, false);
-            grassToWater[2] = new Image(new File("resources/terrain/floor/Grass_Water_2.png").toString(), terrainSize, terrainSize, false, false);
-            grassToWater[3] = new Image(new File("resources/terrain/floor/Grass_Water_3.png").toString(), terrainSize, terrainSize, false, false);
+            grassToWater[0] = new Image(Gridmap.class.getResource("/terrain/floor/Grass_Water_0.png").toString(), terrainSize, terrainSize, false, false);
+            grassToWater[1] = new Image(Gridmap.class.getResource("/terrain/floor/Grass_Water_1.png").toString(), terrainSize, terrainSize, false, false);
+            grassToWater[2] = new Image(Gridmap.class.getResource("/terrain/floor/Grass_Water_2.png").toString(), terrainSize, terrainSize, false, false);
+            grassToWater[3] = new Image(Gridmap.class.getResource("/terrain/floor/Grass_Water_3.png").toString(), terrainSize, terrainSize, false, false);
         dirtToWater = new Image[4];
-            dirtToWater[0] = new Image(new File("resources/terrain/floor/Dirt_Water_0.png").toString(), terrainSize, terrainSize, false, false);
-            dirtToWater[1] = new Image(new File("resources/terrain/floor/Dirt_Water_1.png").toString(), terrainSize, terrainSize, false, false);
-            dirtToWater[2] = new Image(new File("resources/terrain/floor/Dirt_Water_2.png").toString(), terrainSize, terrainSize, false, false);
-            dirtToWater[3] = new Image(new File("resources/terrain/floor/Dirt_Water_3.png").toString(), terrainSize, terrainSize, false, false);
+            dirtToWater[0] = new Image(Gridmap.class.getResource("/terrain/floor/Dirt_Water_0.png").toString(), terrainSize, terrainSize, false, false);
+            dirtToWater[1] = new Image(Gridmap.class.getResource("/terrain/floor/Dirt_Water_1.png").toString(), terrainSize, terrainSize, false, false);
+            dirtToWater[2] = new Image(Gridmap.class.getResource("/terrain/floor/Dirt_Water_2.png").toString(), terrainSize, terrainSize, false, false);
+            dirtToWater[3] = new Image(Gridmap.class.getResource("/terrain/floor/Dirt_Water_3.png").toString(), terrainSize, terrainSize, false, false);
 
         gridmapWidth = (int) gridmap.getWidth();
         gridmapHeight = (int) gridmap.getHeight();
         gridmapChar2D = new char[gridmapWidth][gridmapHeight];
         try {
-            fileReader = new FileReader("src/resources/terrain/floor/GridmapTest52x29_values.txt");
-        } catch (FileNotFoundException e) {
+            fileReader = new FileReader(new File(Gridmap.class.getResource("/terrain/floor/GridmapTest52x29_values.txt").toURI()));
+        } catch (FileNotFoundException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
         bufferedReader = new BufferedReader(fileReader);

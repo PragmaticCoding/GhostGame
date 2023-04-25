@@ -1,5 +1,3 @@
-package main;
-
 public class AnimationTimer extends Thread{
     private final Player player;
 

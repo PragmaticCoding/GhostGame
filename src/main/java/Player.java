@@ -1,5 +1,3 @@
-package main;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -36,22 +34,22 @@ public class Player {
 
         movingImagesR = new Image[4];
         for (int i = 0; i < 4; i++)
-            movingImagesR[i] = new Image(new File("resources/player/MovingRight_" + i + ".png").toString(), playerSize, playerSize, false, false);
+            movingImagesR[i] = new Image(Player.class.getResource("/player/MovingRight_" + i + ".png").toString(), playerSize, playerSize, false, false);
         movingCurImageR = movingImagesR[0];
 
         movingImagesL = new Image[4];
         for (int i = 0; i < 4; i++)
-            movingImagesL[i] = new Image(new File("resources/player/MovingLeft_" + i + ".png").toString(), playerSize, playerSize, false, false);
+            movingImagesL[i] = new Image(Player.class.getResource("/player/MovingLeft_" + i + ".png").toString(), playerSize, playerSize, false, false);
         movingCurImageL = movingImagesL[0];
 
         movingImagesUp = new Image[4];
         for (int i = 0; i < 4; i++)
-            movingImagesUp[i] = new Image(new File("resources/player/MovingUp_" + i + ".png").toString(), playerSize, playerSize, false, false);
+            movingImagesUp[i] = new Image(Player.class.getResource("/player/MovingUp_" + i + ".png").toString(), playerSize, playerSize, false, false);
         movingCurImageUp = movingImagesUp[0];
 
         movingImagesDown = new Image[4];
         for (int i = 0; i < 4; i++)
-            movingImagesDown[i] = new Image(new File("resources/player/MovingDown_" + i + ".png").toString(), playerSize, playerSize, false, false);
+            movingImagesDown[i] = new Image(Player.class.getResource("/player/MovingDown_" + i + ".png").toString(), playerSize, playerSize, false, false);
         movingCurImageDown = movingImagesDown[0];
 
         this.directions = directions;

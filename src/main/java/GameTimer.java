@@ -1,5 +1,3 @@
-package main;
-
 public class GameTimer extends Thread{
     private InputControl inputControl;
     private Panel panel;
